@@ -1,12 +1,12 @@
 
         let storedGuess = ""; //creating a string to store computers letter choice
-        let userGuess = "";
-        let score = 0;
-        let totalLosses = 0;
-        let guessCountDown = 9;
-        let allGuessesString = "";
+        let userGuess = ""; //creating a string to store users letter choice
+        let score = 0; // setting initial score to zero
+        let totalLosses = 0; //setting inital losses to zero
+        let guessCountDown = 9; // user gets 9 tries before 1st loss
+        let allGuessesString = ""; //empty string used to concatenate user inputs and display to viewport
 
-        //
+        //creating an object with an array and a random letter function (method)
         const computerGuess = {
         alphabet : ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"],
 
@@ -17,50 +17,47 @@
         },
 
       };
-
+      //creating another random guess function 
       function anotherGuess(){            
           var i = Math.floor(Math.random() * this.alphabet.length);
             return this.alphabet[i];
         };
 
+        // calling method to compare it later
       storedGuess = computerGuess.makeGuess();
-
-      alert(storedGuess); //value check
     
-      storedGuess = storedGuess.toLowerCase();
-      //alert(storedGuess); value check
-
+    
+      alert(storedGuess); //value check just to confirm that user can acually win
+    
+      storedGuess = storedGuess.toLowerCase(); //converting array to lowercase...could have just made it lowercase to begin with ;-)
       
 
-     // get user guess
+     // get user guess from keyboard input
 
     document.onkeyup = function (event) {
         userGuess = event.key.toLowerCase();
-        allGuessesString = allGuessesString.concat(userGuess + ", ")
-        document.getElementById("allGuesses").innerHTML = "Your Guesses So Far: " + allGuessesString;
+
+        allGuessesString = allGuessesString.concat(userGuess + ", ") // concatenating string
+        document.getElementById("allGuesses").innerHTML = "Your Guesses So Far: " + allGuessesString; //displaying complete string to html
 
         if(storedGuess === userGuess){
         score++;
-        document.getElementById("wins").innerHTML = "Wins: " + score;
-        storedGuess = anotherGuess();
+        document.getElementById("wins").innerHTML = "Wins: " + score; //showing wins to html
+
+            
         }
         else{
 
         guessCountDown--;
-        document.getElementById("guessesLeft").innerHTML = "Guesses Left: " + guessCountDown;
+        document.getElementById("guessesLeft").innerHTML = "Guesses Left: " + guessCountDown; //showing guesses to html
         
             if(guessCountDown === 0){
                 totalLosses++;
                 guessCountDown = 9;
-                document.getElementById("losses").innerHTML = "Losses:  " + totalLosses;
-                storedGuess = anotherGuess();
+                document.getElementById("losses").innerHTML = "Losses:  " + totalLosses; // showing losses to html
+               
             }
         };
-        
-    
-        
-
-
     };
       
 
