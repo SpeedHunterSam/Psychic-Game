@@ -40,17 +40,19 @@
         makeGuess: function() {
             
             var i = Math.floor(Math.random() * this.alphabet.length);
-            //alert("Letter: " + this.alphabet[i]); this just checks the chosen letter
-            //alert(i); this just checks the alphabet position
             return this.alphabet[i];
         },
 
       };
 
-         
+      function anotherGuess(){            
+          var i = Math.floor(Math.random() * this.alphabet.length);
+            return this.alphabet[i];
+        };
+
       storedGuess = computerGuess.makeGuess();
 
-      //alert(storedGuess); value check
+      alert(storedGuess); //value check
     
       storedGuess = storedGuess.toLowerCase();
       //alert(storedGuess); value check
@@ -63,57 +65,35 @@
         userGuess = event.key.toLowerCase();
        
         //userGuess = "c";
-        storedGuess = "c";
+        //storedGuess = "c";
         if(storedGuess === userGuess){
-        //console.log("Congrats, you won!" + "C: " + storedGuess + " U: " + userGuess);
         score++;
         document.querySelector("#wins").innerHTML = "Wins: " + score;
 
+        allGuessesString = UserGuess + ", ";
+        
+        document.querySelector("#allGuesses").innerHTML = "Your Guesses So Far: w" + allGuessesString;
+        storedGuess = anotherGuess();
         }
         else{
 
-        //console.log("Wrong Answer Pal!"  + "C: " + storedGuess + " U: " + userGuess);
         guessCountDown--;
         document.querySelector("#guessesLeft").innerHTML = "Guesses Left: " + guessCountDown;
+        
             if(guessCountDown === 0){
                 totalLosses++;
                 guessCountDown = 9;
                 document.querySelector("#losses").innerHTML = "Losses:  " + totalLosses;
+                storedGuess = anotherGuess();
             }
-
         };
+        
     
-
+        
 
 
     };
-
-    //update scores
-/*
-    function updateScore() {
-      // If there are still more questions, render the next one.
-      if (questionIndex <= (questions.length - 1)) {
-        document.querySelector("#question").innerHTML = questions[questionIndex].q;
-      }
-      // If there aren't, render the end game screen.
-      else {
-        document.querySelector("#question").innerHTML = "Game Over!";
-        document.querySelector("#score").innerHTML = "Final Score: " + score + " out of " + questions.length;
-      }
-    }
-
-    // Function that updates the score...
-    function updateScore() {
-      document.querySelector("#score").innerHTML = "Score: " + score;
-    }
-*/
-
-
-
-
-
-
-        
+      
 
     /*
         Pseudo Code
