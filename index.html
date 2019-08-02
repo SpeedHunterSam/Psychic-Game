@@ -12,25 +12,27 @@
 
     <h1>Psychic Game</h1>
 
-    <p>
-        Guess what letter I'm thinking of...<br/>
-        <br/>
-        Wins:<br/>
-        <br/>
-        Losses:<br/>
-        <br/>
-        Guesses Left:<br/>
-        <br/>
-        Your Guesses So Far:<br/>
-        <br/>
+    <p>Guess what letter I'm thinking of...</p>
+    
+    <p id="wins">Wins:</p>
+    
+    <p id="losses">Losses:</p>
+    
+    <p id="guessesLeft">Guesses Left:</p>
+    
+    <p id="allGuesses">Your Guesses So Far:</p>
+    
 
-
-    </p>
 
     <script>
 
         let storedGuess = ""; //creating a string to store computers letter choice
         let userGuess = "";
+        let score = 0;
+        let totalLosses = 0;
+        let guessCountDown = 9;
+        let allGuessesString = "";
+
         //
         const computerGuess = {
         alphabet : ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"],
@@ -57,22 +59,61 @@
 
      // get user guess
 
-        
-
-     document.onkeyup = function(event){
-        userGuess = event.key;
-        userGuess = userGuess.toLowerCase();
-        //alert(userGuess);
-        };
-
+    document.onkeyup = function (event) {
+        userGuess = event.key.toLowerCase();
+       
         //userGuess = "c";
+        storedGuess = "c";
         if(storedGuess === userGuess){
-        console.log("Congrats, you won!" + "C: " + storedGuess + " U: " + userGuess);
+        //console.log("Congrats, you won!" + "C: " + storedGuess + " U: " + userGuess);
+        score++;
+        document.querySelector("#wins").innerHTML = "Wins: " + score;
+
         }
         else{
-        console.log("Wrong Answer Pal!"  + "C: " + storedGuess + " U: " + userGuess);
-        };
 
+        //console.log("Wrong Answer Pal!"  + "C: " + storedGuess + " U: " + userGuess);
+        guessCountDown--;
+        document.querySelector("#guessesLeft").innerHTML = "Guesses Left: " + guessCountDown;
+            if(guessCountDown === 0){
+                totalLosses++;
+                guessCountDown = 9;
+                document.querySelector("#losses").innerHTML = "Losses:  " + totalLosses;
+            }
+
+        };
+    
+
+
+
+    };
+
+    //update scores
+/*
+    function updateScore() {
+      // If there are still more questions, render the next one.
+      if (questionIndex <= (questions.length - 1)) {
+        document.querySelector("#question").innerHTML = questions[questionIndex].q;
+      }
+      // If there aren't, render the end game screen.
+      else {
+        document.querySelector("#question").innerHTML = "Game Over!";
+        document.querySelector("#score").innerHTML = "Final Score: " + score + " out of " + questions.length;
+      }
+    }
+
+    // Function that updates the score...
+    function updateScore() {
+      document.querySelector("#score").innerHTML = "Score: " + score;
+    }
+*/
+
+
+
+
+
+
+        
 
     /*
         Pseudo Code
