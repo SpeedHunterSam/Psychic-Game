@@ -36,21 +36,23 @@
 
     document.onkeyup = function (event) {
         userGuess = event.key.toLowerCase();
-       
+        allGuessesString = allGuessesString.concat(userGuess + ", ")
+        document.getElementById("allGuesses").innerHTML = "Your Guesses So Far: " + allGuessesString;
+
         if(storedGuess === userGuess){
         score++;
-        document.querySelector("#wins").innerHTML = "Wins: " + score;
+        document.getElementById("wins").innerHTML = "Wins: " + score;
         storedGuess = anotherGuess();
         }
         else{
 
         guessCountDown--;
-        document.querySelector("#guessesLeft").innerHTML = "Guesses Left: " + guessCountDown;
+        document.getElementById("guessesLeft").innerHTML = "Guesses Left: " + guessCountDown;
         
             if(guessCountDown === 0){
                 totalLosses++;
                 guessCountDown = 9;
-                document.querySelector("#losses").innerHTML = "Losses:  " + totalLosses;
+                document.getElementById("losses").innerHTML = "Losses:  " + totalLosses;
                 storedGuess = anotherGuess();
             }
         };
