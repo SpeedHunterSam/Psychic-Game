@@ -30,7 +30,7 @@
     <script>
 
         let storedGuess = ""; //creating a string to store computers letter choice
-
+        let userGuess = "";
         //
         const computerGuess = {
         alphabet : ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"],
@@ -38,21 +38,40 @@
         makeGuess: function() {
             
             var i = Math.floor(Math.random() * this.alphabet.length);
-            alert("Letter: " + this.alphabet[i]);
-            alert(i);
+            //alert("Letter: " + this.alphabet[i]); this just checks the chosen letter
+            //alert(i); this just checks the alphabet position
             return this.alphabet[i];
         },
 
       };
-      
+
+         
       storedGuess = computerGuess.makeGuess();
 
-      console.log(storedGuess);
-
+      //alert(storedGuess); value check
+    
+      storedGuess = storedGuess.toLowerCase();
+      //alert(storedGuess); value check
 
       
 
-     // var i = Math.floor(Math.random() * alphabet.length);
+     // get user guess
+
+        
+
+     document.onkeyup = function(event){
+        userGuess = event.key;
+        userGuess = userGuess.toLowerCase();
+        //alert(userGuess);
+        };
+
+        //userGuess = "c";
+        if(storedGuess === userGuess){
+        console.log("Congrats, you won!" + "C: " + storedGuess + " U: " + userGuess);
+        }
+        else{
+        console.log("Wrong Answer Pal!"  + "C: " + storedGuess + " U: " + userGuess);
+        };
 
 
     /*
